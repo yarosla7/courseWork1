@@ -4,15 +4,14 @@ import java.util.Objects;
 
 public class Employee {
 
-    private String fullName;
+    private final String fullName;
 
     private int department;
 
     private int salary;
 
+    private static int counterId;
     private final int id;
-
-    private int counterId;
 
     public Employee(String fullName, int department, int salary) {
         if (department < 1 || department > 5) {
@@ -37,7 +36,7 @@ public class Employee {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setDepartment(int department) {
@@ -50,20 +49,14 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "fullName='" + fullName + '\'' +
-                ", department=" + department +
-                ", salary=" + salary +
-                ", id=" + id +
-                ", counterId=" + counterId +
-                '}';
+        return "\nФИО сотрудника: " + getFullName() + "\nОтдел: " + getDepartment() + "\nЗарплата: " + getSalary() + "\nID: " + getId();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Employee employee = (Employee) other;
         return id == employee.id && Objects.equals(fullName, employee.fullName);
     }
 
