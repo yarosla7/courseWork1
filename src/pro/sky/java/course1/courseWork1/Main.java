@@ -15,7 +15,6 @@ public class Main {
         employees[7] = new Employee("Куклина Мария Владиславовна", 5, 85_000);
         employees[8] = new Employee("Глазкова Ксения Александровна", 4, 87_000);
         employees[9] = new Employee("Козлова Анна Алексеевна", 1, 145_000);
-
     }
     public static void printAllEmployees() {
 
@@ -68,4 +67,98 @@ public class Main {
             System.out.println("ФИО сотрудника: " + employee.getFullName());
         }
     } // распечатать все фио
+
+    /* Повышенная сложность */
+    public static void checkDep(int department) {
+        if (department <= 0 || department > 5) {
+            throw new IllegalArgumentException("Такого отдела не существует.");
+        }
+    } // проверка на существующий отдел
+    public static int findMinSalaryInDepartment(int department) {
+        checkDep(department);
+        int min = Integer.MAX_VALUE;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                if(employee.getSalary() < min){
+                    min = employee.getSalary();
+                }
+            }
+        }
+        return min;
+    } // найти в отделе минимальную ЗП
+
+    public static int findMaxSalaryInDepartment(int department) {
+        checkDep(department);
+        int max = Integer.MIN_VALUE;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                if(employee.getSalary() > max){
+                    max = employee.getSalary();
+                }
+            }
+        }
+        return max;
+    } // найти в отделе максимальную ЗП
+
+    public static int departmentalCost(int department) {
+        checkDep(department);
+        int sum = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                sum += employee.getSalary();
+            }
+        }
+        return sum;
+    } // сумма затрат на отдел
+
+    public static int departmentalMiddleCost (int department){
+        checkDep(department);
+        departmentalCost(department);
+        int middle = 0;
+        int counter = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                counter = counter + 1;
+                middle = departmentalCost(department) / counter;
+            }
+        }
+        return middle;
+    } // средняя ЗП на отдел
+
+    public static int indexSalary (int percent){
+        double realPercent = (double) percent / 100;
+        int sumOfIndex;
+        int newSalary = 0;
+        for (Employee employee : employees) {
+            sumOfIndex = (int) (employee.getSalary() * realPercent);
+            employee.setSalary(sumOfIndex + employee.getSalary());
+            newSalary = employee.getSalary();
+        }
+        return newSalary;
+    } // индексация ЗП всем на процент
+
+    public static void printAllInDepartment (int department) {
+        checkDep(department);
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                System.out.println(employee.printExceptDepartment(department));
+            }
+        }
+    } // распечатать всех кто в отделе
+
+    public static void printAllIfTheSalaryIsLessThan (int sum) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() < sum) {
+                System.out.println(employee.printForSearch());
+            }
+        }
+    } // распечатать всех у кого ЗП меньше, чем
+
+    public static void printAllIfTheSalaryIsMoreThan (int sum){
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= sum) {
+                System.out.println(employee.printForSearch());
+            }
+        }
+    } // распечатать всех у кого ЗП больше, чем
 }
