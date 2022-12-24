@@ -7,22 +7,16 @@ public class Main {
 
         employees[0] = new Employee("Исаев Никита Владимирович", 1, 95_000);
         employees[1] = new Employee("Носков Никита Юрьевич", 3, 97_000);
-        employees[2] = new Employee("Басов Георгий Сергеевич", 2, 65_000);
+        employees[2] = new Employee("Басов Георгий Сергеевич", 3, 65_000);
         employees[3] = new Employee("Журавлев Алексей Андреевич", 2, 110_000);
-        employees[4] = new Employee("Саламатов Илья Владимирович", 3, 65_000);
+        employees[4] = new Employee("Саламатов Илья Владимирович", 2, 66_000);
         employees[5] = new Employee("Бековщенко Дмитрий Сергеевич", 5, 115_000);
         employees[6] = new Employee("Носкова Ульяна Эдуардовна", 3, 112_000);
         employees[7] = new Employee("Куклина Мария Владиславовна", 5, 85_000);
         employees[8] = new Employee("Глазкова Ксения Александровна", 4, 87_000);
         employees[9] = new Employee("Козлова Анна Алексеевна", 1, 145_000);
-        printAllEmployees();
-        /*System.out.println("sumOfSalary() = " + sumOfSalary());
-        System.out.println("minSalary() = " + minSalary());
-        System.out.println("maxSalary() = " + maxSalary());
-        System.out.println("averageSalary() = " + averageSalary());*/
-        printAllNames();
-    }
 
+    }
     public static void printAllEmployees() {
 
         for (Employee employee : employees) {
@@ -30,7 +24,7 @@ public class Main {
                 System.out.println(employee);
             }
         }
-    }
+    } // выводим список всех сотрудников
 
     public static int sumOfSalary() {
         int sum = 0;
@@ -40,7 +34,7 @@ public class Main {
             }
         }
         return sum;
-    }
+    } // сумма всех зарплат
 
     public static int minSalary() {
         int minimum = Integer.MAX_VALUE;
@@ -50,7 +44,7 @@ public class Main {
             }
         }
         return minimum;
-    }
+    } // минимальная ЗП по всем
 
     public static int maxSalary() {
         int maximum = Integer.MIN_VALUE;
@@ -60,18 +54,18 @@ public class Main {
             }
         }
         return maximum;
-    }
+    } // максимальная ЗП по всем
 
     public static int averageSalary() {
         sumOfSalary();
         int sum = sumOfSalary();
         return sum / employees.length;
-    }
+    } // средняя ЗП по всем
 
     public static void printAllNames() {
         System.out.println();
         for (Employee employee : employees) {
             System.out.println("ФИО сотрудника: " + employee.getFullName());
         }
-    }
+    } // распечатать все фио
 }

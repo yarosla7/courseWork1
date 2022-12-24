@@ -50,7 +50,17 @@ public class Employee {
     @Override
     public String toString() {
         return "\nФИО сотрудника: " + getFullName() + "\nОтдел: " + getDepartment() + "\nЗарплата: " + getSalary() + "\nID: " + getId();
+
     }
+
+    public String printExceptDepartment(int department) {
+        return "\nФИО сотрудника: " + getFullName() + "\nЗарплата: " + getSalary() + "\nID: " + getId();
+    }
+
+    public String printForSearch() {
+        return "ID: " + getId() + "\nФИО сотрудника: " + getFullName() + "\nЗарплата: " + getSalary();
+    }
+
 
     @Override
     public boolean equals(Object other) {
