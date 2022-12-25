@@ -89,76 +89,77 @@ public class EmployeeBook {
             }
         } // печатаем отделы и сотрудников в нем
 
-        /* Базовый уровень ============================================================================================= */
+    /* Базовый уровень ============================================================================================= */
 
-        public void printAllEmployees () {
-            if (counterEmployee() == 0) {
-                throw new RuntimeException("Нет сотрудников.");
-            }
-            for (Employee employee : employees) {
-                if (employee != null) {
-                    System.out.println(employee);
-                }
-            }
-        } // выводим список всех сотрудников
-        public int sumOfSalary () {
-            int sum = 0;
-            for (Employee employee : employees) {
-                if (employee != null) {
-                    sum += employee.getSalary();
-                }
-            }
-            return sum;
-        } // сумма всех зарплат
-        public int minSalary () {
-            int minimum = Integer.MAX_VALUE;
-            for (Employee employee : employees) {
-                if (employee.getSalary() < minimum) {
-                    minimum = employee.getSalary();
-                }
-            }
-            return minimum;
-        } // минимальная ЗП по всем
-        public int maxSalary () {
-            int maximum = Integer.MIN_VALUE;
-            for (Employee employee : employees) {
-                if (employee.getSalary() > maximum) {
-                    maximum = employee.getSalary();
-                }
-            }
-            return maximum;
-        } // максимальная ЗП по всем
-        public int averageSalary () {
-            sumOfSalary();
-            int sum = sumOfSalary();
-            return sum / employees.length;
-        } // средняя ЗП по всем
-        public void printAllNames () {
-            if (counterEmployee() == 0) {
-                throw new RuntimeException("Нет сотрудников.");
-            }
-            for (Employee employee : employees) {
-                if (employee != null) {
-                    System.out.println("ФИО сотрудника: " + employee.getFullName());
-                } else {
-                    System.out.println("Место для нового сотрудника");
-                }
-            }
-        } // распечатать все фио
+    public void printAllEmployees() {
 
-        /* Повышенная сложность ======================================================================================= */
-        public Employee findMinSalaryInDepartment(int department) {
-            checkDep(department);
-            Employee result = employees[0];
-            int min = Integer.MAX_VALUE;
-            for (Employee employee : employees) {
-                if (employee.getDepartment() == department && employee.getSalary() < min) {
-                    min = employee.getSalary();
-                    result = employee;
-                }
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee);
             }
-            return result;
-        } // найти в отделе минимальную ЗП
+        }
+    } // выводим список всех сотрудников
+
+    public int sumOfSalary() {
+        int sum = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                sum += employee.getSalary();
+            }
+        }
+        return sum;
+    } // сумма всех зарплат
+
+    public Employee minSalary() {
+        Employee result = employees[0];
+        int minimum = Integer.MAX_VALUE;
+        for (Employee employee : employees) {
+            if (employee.getSalary() < minimum) {
+                minimum = employee.getSalary();
+                result = employee;
+            }
+        }
+        return result;
+    } // минимальная ЗП по всем
+
+    public Employee maxSalary() {
+        Employee result = employees[0];
+        int maximum = Integer.MIN_VALUE;
+        for (Employee employee : employees) {
+            if (employee.getSalary() > maximum) {
+                maximum = employee.getSalary();
+                result = employee;
+            }
+        }
+        return result;
+    } // максимальная ЗП по всем
+
+    public int averageSalary() {
+        int sum = sumOfSalary();
+        return sum / employees.length;
+    } // средняя ЗП по всем
+
+    public void printAllNames() {
+        System.out.println();
+        for (Employee employee : employees) {
+            System.out.println("ФИО сотрудника: " + employee.getFullName());
+        }
+    } // распечатать все фио
+
+    /* Повышенная сложность ======================================================================================= */
+
+    public Employee findMinSalaryInDepartment(int department) {
+        checkDep(department);
+        Employee result = employees[0];
+        int min = Integer.MAX_VALUE;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department && employee.getSalary() < min) {
+                min = employee.getSalary();
+                result = employee;
+            }
+        }
+        return result;
+    } // найти в отделе минимальную ЗП
 
     public Employee findMaxSalaryInDepartment(int department) {
         checkDep(department);
@@ -228,20 +229,21 @@ public class EmployeeBook {
         for (Employee employee : employees) {
             if (employee.getSalary() >= sum) {
                 System.out.println(employee.printForSearch());
-                }
             }
-        } // распечатать всех у кого ЗП больше, чем
+        }
+    } // распечатать всех у кого ЗП больше, чем
 
-        //вспомогательные методы
-        public int counterEmployee() {
-                int counter = 0;
-                for (Employee employee : employees) {
-                    if (employee != null) {
-                        counter++;
-                    }
+    //вспомогательные методы
+
+    public int counterEmployee() {
+        int counter = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                counter++;
             }
-            return counter;
-        } // посчитать всего
+        }
+        return counter;
+    } // посчитать всего
 
     public int counterInDep(int department) {
         int counter = 0;
