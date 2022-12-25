@@ -36,28 +36,31 @@ public class Main {
         return sum;
     } // сумма всех зарплат
 
-    public static int minSalary() {
+    public static Employee minSalary() {
+        Employee result = employees[0];
         int minimum = Integer.MAX_VALUE;
         for (Employee employee : employees) {
             if (employee.getSalary() < minimum) {
                 minimum = employee.getSalary();
+                result = employee;
             }
         }
-        return minimum;
+        return result;
     } // минимальная ЗП по всем
 
-    public static int maxSalary() {
+    public static Employee maxSalary() {
+        Employee result = employees[0];
         int maximum = Integer.MIN_VALUE;
         for (Employee employee : employees) {
             if (employee.getSalary() > maximum) {
                 maximum = employee.getSalary();
+                result = employee;
             }
         }
-        return maximum;
+        return result;
     } // максимальная ЗП по всем
 
     public static int averageSalary() {
-        sumOfSalary();
         int sum = sumOfSalary();
         return sum / employees.length;
     } // средняя ЗП по всем
